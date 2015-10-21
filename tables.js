@@ -6,7 +6,6 @@ var sequelize = new Sequelize('dms', 'postgres', 'andela', {
   dialect: 'postgres'
 });
 var models = require('./schema')(sequelize, Sequelize);
-// console.dir('abeg show', models);
 
 var db = {};
 
@@ -22,5 +21,6 @@ Object.keys(db).forEach(function(modelName) {
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
+// db.sequelize.sync({force: true});
 
 module.exports = db;

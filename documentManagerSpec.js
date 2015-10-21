@@ -1,5 +1,13 @@
 describe("Document Management System", function() {
   var docMgr = require("./documentManager");
+  var models = require("./tables");
+  models.role.destroy({where: {}}).then(function(){
+    models.user.destroy({where: {}}).then(function(){
+      models.document.destroy({where: {}});
+    });
+  });
+  
+  
 
   describe("Roles", function() {
 
@@ -19,24 +27,48 @@ describe("Document Management System", function() {
     
       it("should get all Roles", function(done) {
         docMgr.getAllRoles().then(function(roles){
+          expect(roles[0]['title']).toBe('Security');
+          expect(roles[1]['title']).toBe('Manager');
           expect(roles.length).toEqual(2);
           done();
         });
+      });
+
+      it("show that new Role title is unique", function() {
+        docMgr.createRole('Manager').error(function(dupRole){
+            expect(dupRole.name).toBe('SequelizeUniqueConstraintError');
+          });
       });
   });
 
   describe("Users", function() {
 
       it("createUser should create new Users", function(done) {
-        docMgr.createUser('Blaq', 'Daddy', 'Security').then(function(user){
-          expect(user.firstName).toBe('Blaq');
-          done();
-        });
+        docMgr.createUser('First', 'User', 'Security').then(function(userOne){
+          expect(userOne.firstName).toBe('First');
+          expect(userOne.lastName).toBe('User');
+          expect(userOne.roleTitle).toBe('Security');
+          
+          docMgr.createUser('Second', 'Person', 'Manager').then(function(user){
+            expect(user.firstName).toBe('Second');
+            expect(user.lastName).toBe('Person');
+            expect(user.roleTitle).toBe('Manager');
+            done();
+          });
+        });  
       });
+
+      it("show that created Users are unique", function() {
+        docMgr.createUser('First', 'User', 'Manager').error(function(dupUser){
+            expect(dupUser.name).toBe('SequelizeUniqueConstraintError');
+          });
+      }); 
     
       it("getAllUsers should return all Users", function(done) {
         docMgr.getAllUsers().then(function(users){
-          expect(users.length).toEqual(1);
+          expect(users[0]['firstName']).toBe('First');
+          expect(users[1]['firstName']).toBe('Second');
+          expect(users.length).toEqual(2);
           done();
         });
       }); 
@@ -60,15 +92,17 @@ describe("Document Management System", function() {
     
       it("should return all Documents", function(done) {
         docMgr.getAllDocuments(5).then(function(docs){
-          console.log('all docs', docs);
           expect(docs.length).toEqual(2);
           done();
         });
       });
+  });
+
+    describe("Search", function() {
 
       it("should return all Documents by Role", function(done) {
         docMgr.getAllDocumentsByRole('Security', 5).then(function(docs){
-          console.log('by role', docs);
+          expect(docs[0]['title']).toBe('The Hobbit');
           expect(docs.length).toEqual(1);
           done();
         });
@@ -76,11 +110,17 @@ describe("Document Management System", function() {
 
       it("should return all Documents by Date", function(done) {
         docMgr.getAllDocumentsByDate('2010-12-09', 5).then(function(docs){
-          console.log('by date', docs);
+          expect(docs[0]['title']).toBe('The Hobbit');
+          expect(docs[1]['title']).toBe('The Spy');
           expect(docs.length).toEqual(2);
           done();
         });
-      });
+        models.role.destroy({where: {}, force: true}).then(function(){
+          models.user.destroy({where: {}, force: true}).then(function(){
+            models.document.destroy({where: {}, force: true});
+          });
+        }); 
+      });    
   });
 
 });

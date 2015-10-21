@@ -1,8 +1,7 @@
 var models = require("./tables");
-console.dir(models);
 var User = models.user;
 var Role = models.role;
-var Document = models.document;
+var Document = models['document'];
 
 // console.dir('this variable' + models.role + 'is here.');
 

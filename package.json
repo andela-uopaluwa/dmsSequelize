@@ -1,0 +1,26 @@
+{
+  "name": "dms",
+  "version": "1.0.0",
+  "description": "a document management system",
+  "main": "documentManagerSpec.js",
+  "dependencies": {
+    "jasmine-node": "^1.14.5",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^3.12.2",
+    "pg": "^4.4.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "jasmine-node documentManagerSpec.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andela-uopaluwa/doc-managment-sys.git"
+  },
+  "author": "uopaluwa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andela-uopaluwa/doc-managment-sys/issues"
+  },
+  "homepage": "https://github.com/andela-uopaluwa/doc-managment-sys#readme"
+}
