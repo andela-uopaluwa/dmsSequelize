@@ -1,7 +1,7 @@
 describe("Document Management System", function() {
   var docMgr = require("./documentManager");
   var models = require("./tables");
-
+  //clear table entries if any
   models.role.destroy({where: {}}).then(function(){
     models.user.destroy({where: {}}).then(function(){
       models.document.destroy({where: {}});
@@ -114,6 +114,7 @@ describe("Document Management System", function() {
           expect(docs.length).toEqual(2);
           done();
         });
+        //clear table entries
         models.role.destroy({where: {}, force: true}).then(function(){
           models.user.destroy({where: {}, force: true}).then(function(){
             models.document.destroy({where: {}, force: true});

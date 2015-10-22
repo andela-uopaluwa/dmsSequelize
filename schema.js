@@ -1,5 +1,5 @@
 "use strict";
-
+//definition of table models
 module.exports = function(sequelize, DataTypes) {
 	var Role = sequelize.define('role', {
 		title: {
@@ -74,6 +74,3 @@ module.exports = function(sequelize, DataTypes) {
 	
   return [ Role, User, Document];
 };
-
-
-
