@@ -11,7 +11,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "jasmine-node documentManagerSpec.js"
+    "test": " node tables.js | jasmine-node documentManagerSpec.js"
   },
   "repository": {
     "type": "git",

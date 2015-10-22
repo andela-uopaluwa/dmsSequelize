@@ -71,13 +71,9 @@ module.exports = function(sequelize, DataTypes) {
 	    }
 		}
 	);
-	// sequelize.sync({force: true});
-
-  return [User, Role, Document];
+	
+  return [ Role, User, Document];
 };
 
-
-// User.belongsTo(Role, {foreignKey: 'userRole'});
-// Document.belongsTo(Role, {foreignKey: 'accessRole'});
 
 

@@ -3,8 +3,6 @@ var User = models.user;
 var Role = models.role;
 var Document = models['document'];
 
-// console.dir('this variable' + models.role + 'is here.');
-
 module.exports = {
 	createUser: function(first_name, last_name, user_role){
 		return User.create({firstName: first_name, lastName: last_name, roleTitle: user_role}).then(function(user){

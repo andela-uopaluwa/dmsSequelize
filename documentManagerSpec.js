@@ -1,13 +1,12 @@
 describe("Document Management System", function() {
   var docMgr = require("./documentManager");
   var models = require("./tables");
+
   models.role.destroy({where: {}}).then(function(){
     models.user.destroy({where: {}}).then(function(){
       models.document.destroy({where: {}});
     });
-  });
-  
-  
+  }); 
 
   describe("Roles", function() {
 
