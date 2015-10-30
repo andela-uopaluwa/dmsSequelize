@@ -15,7 +15,6 @@ module.exports = function(sequelize, DataTypes) {
   	}
 	);
 
-
 	var User = sequelize.define('user', {
 		id: {
 			type: DataTypes.INTEGER,
@@ -42,7 +41,6 @@ module.exports = function(sequelize, DataTypes) {
 	    }
 		}
 	); 
-
 
 	var Document = sequelize.define('document', {
 		id: {

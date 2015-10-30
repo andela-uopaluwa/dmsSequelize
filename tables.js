@@ -22,6 +22,4 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 //sync models to db
 db.sequelize.sync();
-
-
 module.exports = db;

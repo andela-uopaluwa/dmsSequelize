@@ -50,7 +50,6 @@ module.exports = {
 			function logArrayElements(element, index, array) {
 		  	result.push(element.dataValues);
 			}
-				// console.log('length', docs.length);
 		 	docs.forEach(logArrayElements);
 		 	return result;
 		});
@@ -63,7 +62,6 @@ module.exports = {
 			function logArrayElements(element, index, array) {
 		  	result.push(element.dataValues);
 			}
-				// console.log('length', roles.length);
 		  docs.forEach(logArrayElements);
 		  return result;
 		});
@@ -75,7 +73,6 @@ module.exports = {
 			function logArrayElements(element, index, array) {
 		  	result.push(element.dataValues);
 			}
-				// console.log('length', roles.length);
 		  docs.forEach(logArrayElements);
 		  return result;
 		});
