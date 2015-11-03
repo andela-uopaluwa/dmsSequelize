@@ -18,7 +18,7 @@ module.exports = {
 				}
 			  users.forEach(logArrayElements);
 			  return result;
-			});	
+			});
 	},
 
 	createRole: function(role_title){
@@ -42,7 +42,7 @@ module.exports = {
 		return Document.create({title: doc_title, accessRole: access_role, publishedDate: pub_date}).then(function(doc){
 			return doc;
 		});
-	}, 
+	},
 
 	getAllDocuments: function(limit_value){
 		var result = [];
@@ -77,7 +77,4 @@ module.exports = {
 		  return result;
 		});
 	}
-
-
 }
-

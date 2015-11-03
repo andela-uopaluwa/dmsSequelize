@@ -1,5 +1,5 @@
 "use strict";
-
+//setting up sequelize
 var Sequelize = require("sequelize");
 var sequelize = new Sequelize('dms', 'postgres', 'andela', {
   host: 'localhost',
@@ -12,6 +12,7 @@ models.forEach(function(model) {
   db[model.name] = model;
 });
 
+//handle association between models
 Object.keys(db).forEach(function(modelName) {
   if ("associate" in db[modelName]) {
     db[modelName].associate(db);

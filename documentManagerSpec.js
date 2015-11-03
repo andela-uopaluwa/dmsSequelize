@@ -23,7 +23,7 @@ describe("Document Management System", function() {
           done();
         });
       });
-    
+
       it("should get all Roles", function(done) {
         docMgr.getAllRoles().then(function(roles){
           expect(roles[0]['title']).toBe('Security');
@@ -47,22 +47,22 @@ describe("Document Management System", function() {
           expect(userOne.firstName).toBe('First');
           expect(userOne.lastName).toBe('User');
           expect(userOne.roleTitle).toBe('Security');
-          
+
           docMgr.createUser('Second', 'Person', 'Manager').then(function(user){
             expect(user.firstName).toBe('Second');
             expect(user.lastName).toBe('Person');
             expect(user.roleTitle).toBe('Manager');
             done();
           });
-        });  
+        });
       });
 
       it("show that created Users are unique", function() {
         docMgr.createUser('First', 'User', 'Manager').error(function(dupUser){
             expect(dupUser.name).toBe('SequelizeUniqueConstraintError');
           });
-      }); 
-    
+      });
+
       it("getAllUsers should return all Users", function(done) {
         docMgr.getAllUsers().then(function(users){
           expect(users[0]['firstName']).toBe('First');
@@ -70,7 +70,7 @@ describe("Document Management System", function() {
           expect(users.length).toEqual(2);
           done();
         });
-      }); 
+      });
   });
 
   describe("Documents", function() {
@@ -88,7 +88,7 @@ describe("Document Management System", function() {
           done();
         });
       });
-    
+
       it("should return all Documents", function(done) {
         docMgr.getAllDocuments(5).then(function(docs){
           expect(docs.length).toEqual(2);
@@ -119,8 +119,8 @@ describe("Document Management System", function() {
           models.user.destroy({where: {}, force: true}).then(function(){
             models.document.destroy({where: {}, force: true});
           });
-        }); 
-      });    
+        });
+      });
   });
 
 });

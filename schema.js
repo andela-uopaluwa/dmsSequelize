@@ -32,7 +32,7 @@ module.exports = function(sequelize, DataTypes) {
 			unique: true
 		}
 	},{
-		
+
 	    classMethods: {
 	      associate: function(models) {
 	        User.belongsTo(models.role
@@ -40,7 +40,7 @@ module.exports = function(sequelize, DataTypes) {
 	      }
 	    }
 		}
-	); 
+	);
 
 	var Document = sequelize.define('document', {
 		id: {
@@ -55,10 +55,10 @@ module.exports = function(sequelize, DataTypes) {
 		},
 		publishedDate: {
 			type: DataTypes.DATEONLY,
-			defaultValue: DataTypes.NOW 
+			defaultValue: DataTypes.NOW
 		}
 	},{
-		
+
 	    classMethods: {
 	      associate: function(models) {
 	        Document.belongsTo(models.role, {
@@ -69,6 +69,6 @@ module.exports = function(sequelize, DataTypes) {
 	    }
 		}
 	);
-	
+
   return [ Role, User, Document];
 };
