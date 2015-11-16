@@ -1,74 +1,69 @@
 "use strict";
 //definition of table models
 module.exports = function(sequelize, DataTypes) {
-	var Role = sequelize.define('role', {
-		title: {
-			type: DataTypes.STRING,
-			primaryKey: true
-		}
-	},{
+  var Role = sequelize.define('role', {
+    title: {
+      type: DataTypes.STRING,
+      primaryKey: true
+    }
+  }, {
     classMethods: {
       associate: function(models) {
         Role.hasMany(models.user)
-      	}
-    	}
-  	}
-	);
+      }
+    }
+  });
 
-	var User = sequelize.define('user', {
-		id: {
-			type: DataTypes.INTEGER,
-			primaryKey: true,
-			autoIncrement: true
-		},
-		firstName: {
-			type: DataTypes.STRING,
-			allowNull: false,
-			unique: true
-		},
-			lastName: {
-			type: DataTypes.STRING,
-			allowNull: false,
-			unique: true
-		}
-	},{
+  var User = sequelize.define('user', {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true
+    },
+    firstName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true
+    },
+    lastName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true
+    }
+  }, {
 
-	    classMethods: {
-	      associate: function(models) {
-	        User.belongsTo(models.role
-	        );
-	      }
-	    }
-		}
-	);
+    classMethods: {
+      associate: function(models) {
+        User.belongsTo(models.role);
+      }
+    }
+  });
 
-	var Document = sequelize.define('document', {
-		id: {
-			type: DataTypes.INTEGER,
-			primaryKey: true,
-			autoIncrement: true
-		},
-		title: {
-			type: DataTypes.STRING,
-			allowNull: false,
-			unique: true
-		},
-		publishedDate: {
-			type: DataTypes.DATEONLY,
-			defaultValue: DataTypes.NOW
-		}
-	},{
+  var Document = sequelize.define('document', {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true
+    },
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true
+    },
+    publishedDate: {
+      type: DataTypes.DATEONLY,
+      defaultValue: DataTypes.NOW
+    }
+  }, {
 
-	    classMethods: {
-	      associate: function(models) {
-	        Document.belongsTo(models.role, {
-	          foreignKey: 'accessRole'
-	        	}
-	        );
-	      }
-	    }
-		}
-	);
+    classMethods: {
+      associate: function(models) {
+        Document.belongsTo(models.role, {
+          foreignKey: 'accessRole'
+        });
+      }
+    }
+  });
 
-  return [ Role, User, Document];
+  return [Role, User, Document];
 };
