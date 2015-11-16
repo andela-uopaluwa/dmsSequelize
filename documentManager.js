@@ -4,7 +4,7 @@ var Role = models.role;
 var Document = models['document'];
 var result = [];
 
-function logArrayElements(element, index, array) {
+function populateResultsArray(element, index, array) {
   result.push(element.dataValues);
 };
 
@@ -22,7 +22,7 @@ module.exports = {
   getAllUsers: function() {
     result = [];
     return User.findAll().then(function(users) {
-      users.forEach(logArrayElements);
+      users.forEach(populateResultsArray);
       return result;
     });
   },
@@ -38,7 +38,7 @@ module.exports = {
   getAllRoles: function() {
     result = [];
     return Role.findAll().then(function(roles) {
-      roles.forEach(logArrayElements);
+      roles.forEach(populateResultsArray);
       return result;
     });
   },
@@ -59,7 +59,7 @@ module.exports = {
       limit: limit_value,
       order: '"publishedDate" ASC'
     }).then(function(docs) {
-      docs.forEach(logArrayElements);
+      docs.forEach(populateResultsArray);
       return result;
     });
 
@@ -74,7 +74,7 @@ module.exports = {
       limit: limit_value,
       order: '"publishedDate" ASC'
     }).then(function(docs) {
-      docs.forEach(logArrayElements);
+      docs.forEach(populateResultsArray);
       return result;
     });
   },
@@ -88,7 +88,7 @@ module.exports = {
       limit: limit_value,
       order: '"publishedDate" ASC'
     }).then(function(docs) {
-      docs.forEach(logArrayElements);
+      docs.forEach(populateResultsArray);
       return result;
     });
   }
